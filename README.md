@@ -1,1 +1,4 @@
-# 65c02
+# 65c02 breadboard 
+USB 2.0 input
+USB 3.0 output
+VGA output
