@@ -1,0 +1,105 @@
+PORTB0 = $8000
+PORTA0 = $8001
+DDRB0 = $8002
+DDRA0 = $8003
+T1CL0 = $0004
+T1CH0 = $0005
+T1LL0 = $0006
+T1LH0 = $0007
+T2CL0 = $0008
+T2CH0 = $0009
+SR0 = $000A
+ARC0 = $000B
+PCR0 = $000C
+IFR0 = $000D
+IER0 = $000E
+PORTB1 = $8010
+PORTA1 = $8011
+DDRB1 = $8012
+DDRA1 = $8013
+T1CL1 = $0014
+T1CH1 = $0015
+T1LL1 = $0016
+T1LH1 = $0017
+T2CL1 = $0018
+T2CH1 = $0019
+SR1 = $001A
+ARC1 = $001B
+PCR1 = $001C
+IFR1 = $001D
+IER1 = $001E
+PORTB2 = $8020
+PORTA2 = $8021
+DDRB2 = $8022
+DDRA2 = $8023
+T1CL2 = $0024
+T1CH2 = $0025
+T1LL2 = $0026
+T1LH2 = $0027
+T2CL2 = $0028
+T2CH2 = $0029
+SR2 = $002A
+ARC2 = $002B
+PCR2 = $002C
+IFR2 = $002D
+IER2 = $002E
+PORTB3 = $8030
+PORTA3 = $8031
+DDRB3 = $8032
+DDRA3 = $8033
+T1CL3 = $0034
+T1CH3 = $0035
+T1LL3 = $0036
+T1LH3 = $0037
+T2CL3 = $0038
+T2CH3 = $0039
+SR3 = $003A
+ARC3 = $003B
+PCR3 = $003C
+IFR3 = $003D
+IER3 = $003E
+PORTB4 = $8040
+PORTA4 = $8041
+DDRB4 = $8042
+DDRA4 = $8043
+T1CL4 = $0044
+T1CH4 = $0045
+T1LL4 = $0046
+T1LH4 = $0047
+T2CL4 = $0048
+T2CH4 = $0049
+SR4 = $004A
+ARC4 = $004B
+PCR4 = $004C
+IFR4 = $004D
+IER4 = $004E
+
+  .org $E000
+  
+reset:
+  lda #%11111111  ; set all pins on port B to output
+  sta DDRB0
+  lda #%11100000  ; set top 3 pins on port A to output and rest to input
+  sta DDRA0
+  lda #$00        ;load a reg with 0 
+  sta DDRB1
+  sta DDRA1
+  sta DDRB2
+  sta DDRA2
+  sta DDRB3
+  sta DDRA3
+  sta DDRB4
+  sta DDRA4
+  
+loop:
+  jmp loop
+  
+irq:
+  rti
+  
+nmi:
+  rti
+  .org $fffa
+  .word irq
+  .word reset
+  .word nmi
