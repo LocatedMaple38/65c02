@@ -1,3 +1,4 @@
+; start VIA 1
 PORTB0 = $8000
 PORTA0 = $8001
 DDRB0 = $8002
@@ -13,6 +14,8 @@ ARC0 = $800B
 PCR0 = $800C
 IFR0 = $800D
 IER0 = $800E
+;end VIA 1
+;start VIA 2
 PORTB1 = $8010
 PORTA1 = $8011
 DDRB1 = $8012
@@ -28,6 +31,8 @@ ARC1 = $801B
 PCR1 = $801C
 IFR1 = $801D
 IER1 = $801E
+;end VIA 2
+;start VIA 3
 PORTB2 = $8020
 PORTA2 = $8021
 DDRB2 = $8022
@@ -43,6 +48,8 @@ ARC2 = $802B
 PCR2 = $802C
 IFR2 = $802D
 IER2 = $802E
+;end VIA 3
+;start VIA 4
 PORTB3 = $8030
 PORTA3 = $8031
 DDRB3 = $8032
@@ -58,6 +65,8 @@ ARC3 = $803B
 PCR3 = $803C
 IFR3 = $803D
 IER3 = $803E
+;end VIA 4
+;start VIA 5
 PORTB4 = $8040
 PORTA4 = $8041
 DDRB4 = $8042
@@ -73,16 +82,12 @@ ARC4 = $804B
 PCR4 = $804C
 IFR4 = $804D
 IER4 = $804E
-ANS = 
-
   .org $E000
   
 reset:
-  lda #%11111111  ; set all pins on port B to output
-  sta DDRB0
-  lda #%11100000  ; set top 3 pins on port A to output and rest to input
-  sta DDRA0
   lda #$00        ;load a reg with 0 
+  sta DDRB0
+  sta DDRA0
   sta DDRB1
   sta DDRA1
   sta DDRB2
@@ -93,8 +98,12 @@ reset:
   sta DDRA4
   
 loop:
-  jmp loop
   
+  jmp loop
+
+anser:
+  rts
+
 irq:
   rti
   
