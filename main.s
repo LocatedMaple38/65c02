@@ -73,6 +73,7 @@ ARC4 = $004B
 PCR4 = $004C
 IFR4 = $004D
 IER4 = $004E
+ANS = 
 
   .org $E000
   
