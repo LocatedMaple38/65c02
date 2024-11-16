@@ -6,3 +6,6 @@ VGA output
 adderss map: 
 
 I/O 8000-804E
+
+ROM E000-FFFF
+
