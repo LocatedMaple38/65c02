@@ -82,15 +82,18 @@ ARC4 = $804B
 PCR4 = $804C
 IFR4 = $804D
 IER4 = $804E
+
   .org $E000
   
 reset:
-  lda #$00        ;load a reg with 0 
+  lda #$ff        ;load a reg with 0 
   sta DDRB0
   sta DDRA0
   sta DDRB1
   sta DDRA1
+  lda #%00000111
   sta DDRB2
+  lda #$00
   sta DDRA2
   sta DDRB3
   sta DDRA3
@@ -100,9 +103,6 @@ reset:
 loop:
   
   jmp loop
-
-anser:
-  rts
 
 irq:
   rti
