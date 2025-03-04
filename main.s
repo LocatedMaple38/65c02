@@ -1,6 +1,6 @@
-; start VIA 1 ; lcd/ main IO
-PORTB0 = $8000 ; lcd
-PORTA0 = $8001 ; main IO
+; start VIA 1 ; lcd data/ lcd control
+PORTB0 = $8000 ; lcd data
+PORTA0 = $8001 ; lcd control
 DDRB0 = $8002
 DDRA0 = $8003
 T1CL0 = $8004
@@ -15,9 +15,9 @@ PCR0 = $800C
 IFR0 = $800D
 IER0 = $800E
 ;end VIA 1
-;start VIA 2 ; vido red/blue
-PORTB1 = $8010 ; vido red
-PORTA1 = $8011 ; vido blue
+;start VIA 2 ; vido blue/ main IO
+PORTB1 = $8010 ; Main IO
+PORTA1 = $8011 ; vido red
 DDRB1 = $8012
 DDRA1 = $8013
 T1CL1 = $8014
@@ -32,9 +32,9 @@ PCR1 = $801C
 IFR1 = $801D
 IER1 = $801E
 ;end VIA 2
-;start VIA 3 ; vido green/secondaey IO 1
-PORTB2 = $8020 ; vido green
-PORTA2 = $8021 ; secondaey IO 1
+;start VIA 3 ; vido green/blue
+PORTB2 = $8020 ; vido blue
+PORTA2 = $8021 ; vido green
 DDRB2 = $8022
 DDRA2 = $8023
 T1CL2 = $8024
@@ -142,29 +142,57 @@ RS = %00000001 ; regaster slect
   .org $E000
   
 reset:
-  lda #$ff        ;load a reg with 0 
-  sta DDRB0
-  sta DDRA0
-  sta DDRB1
-  sta DDRA1
-  lda #%00000111
-  sta DDRB2
-  lda #$00
-  sta DDRA2
-  sta DDRB3
-  sta DDRA3
-  sta DDRB4
-  sta DDRA4
+  lda #$ff        ;load a reg with ff
+  sta DDRB0       ;set DDRB0 to output
+  lda #%00000111  ;load a reg with 7
+  sta DDRA0       ;set DDRA0 bottom 3 bits to output
+  lda #$ff        ;load a reg with ff
+  sta DDRB1       ;set DDRB1 to output
+  sta DDRA1       ;set DDRA1 to output
+  sta DDRB2       ;set DDRB2 to output
+  lda #$00        ;load a reg with 0
+  sta DDRA2       ;set DDRA2 to input
+  sta DDRB3       ;set DDRB3 to input
+  sta DDRA3       ;set DDRA3 to input
+  sta DDRB4       ;set DDRB4 to input
+  sta DDRA4       ;set DDRA4 to input
+  sta DDRB5       ;set DDRB5 to input
+  sta DDRA5       ;set DDRA5 to input
+  sta DDRB6       ;set DDRB6 to input
+  sta DDRA6       ;set DDRA6 to input
+  sta DDRB7       ;set DDRB7 to input
+  sta DDRA7       ;set DDRA7 to input
+
+  jsr lcd_init   ;init lcd
 
 
+lcd_init:
+  lda #%00000001  ;clear lcd display
+  jsr lcd_print   ;print to lcd
+  lda #%00000010  ;reset cursetr top left
+  jsr lcd_print   ;print to lcd
+  lda #%00000110  ;entry mode set
+  jsr lcd_print   ;print to lcd
+  lda #%00001111  ;display on
+  jsr lcd_print   ;print to lcd
+  lda #%00010100  ;cursor or display shift
+  jsr lcd_print   ;print to lcd
+  lda #%00111000  ;function set
+  jsr lcd_print   ;print to lcd
+  rts
+
+lcd_print:
+  sta PORTB0     ;proint a reg to lcd
+  lda #E         ;enable
+  sta PORTA0     ;enable lcd
+  lda #$00       ;clear a reg
+  sta PORTA0     ;clear lcd enable
+  rts
+  
   
 loop:
   
   jmp loop
-
-lcd_print:
-
-  rts
 
 
 irq:
@@ -204,6 +232,76 @@ VIA0:
   bbs1 IFR0CA1
   bbs0 IFR0CA2
   jmp irq1
+
+VIA1:
+  bbs6 IFR1Timer1
+  bbs5 IFR1Timer2
+  bbs4 IFR1CB1
+  bbs3 IFR1CB2
+  bbs2 IFR1SR
+  bbs1 IFR1CA1
+  bbs0 IFR1CA2
+  jmp irq1
+
+VIA2:
+  bbs6 IFR2Timer1
+  bbs5 IFR2Timer2
+  bbs4 IFR2CB1
+  bbs3 IFR2CB2
+  bbs2 IFR2SR
+  bbs1 IFR2CA1
+  bbs0 IFR2CA2
+  jmp irq1
+
+VIA3:
+  bbs6 IFR3Timer1
+  bbs5 IFR3Timer2
+  bbs4 IFR3CB1
+  bbs3 IFR3CB2
+  bbs2 IFR3SR
+  bbs1 IFR3CA1
+  bbs0 IFR3CA2
+  jmp irq1
+
+VIA4:
+  bbs6 IFR4Timer1
+  bbs5 IFR4Timer2
+  bbs4 IFR4CB1
+  bbs3 IFR4CB2
+  bbs2 IFR4SR
+  bbs1 IFR4CA1
+  bbs0 IFR4CA2
+  jmp irq1
+
+VIA5:
+  bbs6 IFR5Timer1
+  bbs5 IFR5Timer2
+  bbs4 IFR5CB1
+  bbs3 IFR5CB2
+  bbs2 IFR5SR
+  bbs1 IFR5CA1
+  bbs0 IFR5CA2
+  jmp irq1
+
+VIA6:
+  bbs6 IFR6Timer1
+  bbs5 IFR6Timer2
+  bbs4 IFR6CB1
+  bbs3 IFR6CB2
+  bbs2 IFR6SR
+  bbs1 IFR6CA1
+  bbs0 IFR6CA2
+  jmp irq1
+
+VIA7:
+  bbs6 IFR7Timer1
+  bbs5 IFR7Timer2
+  bbs4 IFR7CB1
+  bbs3 IFR7CB2
+  bbs2 IFR7SR
+  bbs1 IFR7CA1
+  bbs0 IFR7CA2
+  jmp irq1
  
 IFR0Timer1:
   jmp VIA0
@@ -225,6 +323,153 @@ IFR0CA1:
 
 IFR0CA2:
   jmp VIA0
+
+IFR1Timer1:
+  jmp VIA1
+
+IFR1Timer2:
+  jmp VIA1
+
+IFR1CB1:
+  jmp VIA1
+
+IFR1CB2:
+  jmp VIA1
+
+IFR1SR:
+  jmp VIA1
+
+IFR1CA1:
+  jmp VIA1
+
+IFR1CA2:
+  jmp VIA1
+
+IFR2Timer1:
+  jmp VIA2
+
+IFR2Timer2:
+  jmp VIA2
+
+IFR2CB1:
+  jmp VIA2
+
+IFR2CB2:
+  jmp VIA2
+
+IFR2SR:
+  jmp VIA2
+
+IFR2CA1:
+  jmp VIA2
+
+IFR2CA2:
+  jmp VIA2
+
+IFR3Timer1:
+  jmp VIA3
+
+IFR3Timer2:
+  jmp VIA3
+
+IFR3CB1:
+  jmp VIA3
+
+IFR3CB2:
+  jmp VIA3
+
+IFR3SR:
+  jmp VIA3
+
+IFR3CA1:
+  jmp VIA3
+
+IFR3CA2:  
+  jmp VIA3
+
+IFR4Timer1:
+  jmp VIA4
+
+IFR4Timer2:
+  jmp VIA4
+
+IFR4CB1:
+  jmp VIA4
+
+IFR4CB2:
+  jmp VIA4
+
+IFR4SR:
+  jmp VIA4
+
+IFR4CA1:
+  jmp VIA4
+
+IFR4CA2:
+  jmp VIA4
+
+IFR5Timer1:
+  jmp VIA5
+
+IFR5Timer2:
+  jmp VIA5
+
+IFR5CB1:
+  jmp VIA5
+
+IFR5CB2:
+  jmp VIA5
+
+IFR5SR:
+  jmp VIA5
+
+IFR5CA1:
+  jmp VIA5
+
+IFR5CA2:
+  jmp VIA5
+
+IFR6Timer1:
+  jmp VIA6
+
+IFR6Timer2:
+  jmp VIA6
+
+IFR6CB1:
+  jmp VIA6
+
+IFR6CB2:
+  jmp VIA6
+
+IFR6SR:
+  jmp VIA6
+
+IFR6CA1:
+  jmp VIA6
+
+IFR6CA2:
+  jmp VIA6
+
+IFR7Timer1:
+  jmp VIA7
+
+IFR7Timer2:
+  jmp VIA7
+
+IFR7CB1:
+  jmp VIA7
+
+IFR7CB2:
+  jmp VIA7
+
+IFR7SR:
+  jmp VIA7
+
+IFR7CA1:
+  jmp VIA7
+
+IFR7CA2:
+  jmp VIA7
 
 nmi:
   rti
