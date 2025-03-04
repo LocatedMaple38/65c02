@@ -49,9 +49,9 @@ PCR2 = $802C
 IFR2 = $802D
 IER2 = $802E
 ;end VIA 3
-;start VIA 4 ; secondaey IO 2/3
-PORTB3 = $8030 ; secondaey IO 2
-PORTA3 = $8031 ; secondaey IO 3
+;start VIA 4 ; secondaey IO 2/PS/2 keyboard
+PORTB3 = $8030 ; PS/2 keyboard
+PORTA3 = $8031 ; secondaey IO 2
 DDRB3 = $8032
 DDRA3 = $8033
 T1CL3 = $8034
@@ -66,9 +66,9 @@ PCR3 = $803C
 IFR3 = $803D
 IER3 = $803E
 ;end VIA 4
-;start VIA 5 ; secondaey IO 4/5
-PORTB4 = $8040 ; secondaey IO 4
-PORTA4 = $8041 ; secondaey IO 5
+;start VIA 5 ; secondaey IO 3/4
+PORTB4 = $8040 ; secondaey IO 3
+PORTA4 = $8041 ; secondaey IO 4
 DDRB4 = $8042
 DDRA4 = $8043
 T1CL4 = $8044
@@ -83,9 +83,9 @@ PCR4 = $804C
 IFR4 = $804D
 IER4 = $804E
 ;end VIA 5
-;start VIA 6 ; secondaey IO 6/7
-PORTB5 = $8050 ; secondaey IO 6
-PORTA5 = $8051 ; secondaey IO 7
+;start VIA 6 ; secondaey IO 5/6
+PORTB5 = $8050 ; secondaey IO 5
+PORTA5 = $8051 ; secondaey IO 6
 DDRB5 = $8052
 DDRA5 = $8053
 T1CL5 = $8054
@@ -100,9 +100,9 @@ PCR5 = $805C
 IFR5 = $805D
 IER5 = $805E
 ;end VIA 6
-;start VIA 7 ; secondaey IO 8/9
-PORTB6 = $8060 ; secondaey IO 8
-PORTA6 = $8061 ; secondaey IO 9
+;start VIA 7 ; secondaey IO 8/7
+PORTB6 = $8060 ; secondaey IO 7
+PORTA6 = $8061 ; secondaey IO 8
 DDRB6 = $8062
 DDRA6 = $8063
 T1CL6 = $8064
@@ -117,9 +117,9 @@ PCR6 = $806C
 IFR6 = $806D
 IER6 = $806E
 ;end VIA 7
-;start VIA 8 ; secondaey IO 10/11
-PORTB7 = $8070 ; secondaey IO 10
-PORTA7 = $8071 ; secondaey IO 11
+;start VIA 8 ; secondaey IO 9/10
+PORTB7 = $8070 ; secondaey IO 9
+PORTA7 = $8071 ; secondaey IO 10
 DDRB7 = $8072
 DDRA7 = $8073
 T1CL7 = $8074
@@ -187,6 +187,9 @@ lcd_print:
   sta PORTA0     ;enable lcd
   lda #$00       ;clear a reg
   sta PORTA0     ;clear lcd enable
+  rts
+
+ld_read:
   rts
   
   
