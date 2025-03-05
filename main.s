@@ -15,7 +15,7 @@ PCR0 = $800C
 IFR0 = $800D
 IER0 = $800E
 ;end VIA 1
-;start VIA 2 ; vido blue/ main IO
+;start VIA 2 ; vido red/ main IO
 PORTB1 = $8010 ; Main IO
 PORTA1 = $8011 ; vido red
 DDRB1 = $8012
@@ -49,7 +49,7 @@ PCR2 = $802C
 IFR2 = $802D
 IER2 = $802E
 ;end VIA 3
-;start VIA 4 ; secondaey IO 2/PS/2 keyboard
+;start VIA 4 ; secondaey IO 2/ PS/2 keyboard
 PORTB3 = $8030 ; PS/2 keyboard
 PORTA3 = $8031 ; secondaey IO 2
 DDRB3 = $8032
@@ -164,7 +164,7 @@ reset:
   sta DDRA7       ;set DDRA7 to input
 
   jsr lcd_init   ;init lcd
-
+  jmp loop
 
 lcd_init:
   lda #%00000001  ;clear lcd display
