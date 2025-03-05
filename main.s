@@ -1,4 +1,6 @@
-; start VIA 1 ; lcd data/ lcd control
+;address maping
+;VIA 1 address maping
+;start VIA 1 ;lcd data and control
 PORTB0 = $8000  ;lcd data
 PORTA0 = $8001  ;lcd control
 DDRB0 = $8002   ;data deriction regaster for port B on VIA 0 ;set address for port B to $8002
@@ -15,7 +17,8 @@ PCR0 = $800C    ;peripheral control regaster for VIA 0 ;set address for peripher
 IFR0 = $800D    ;interrupt flag regaster for VIA 0 ;set address for interrupt flag regaster to $800D
 IER0 = $800E    ;interrupt enable regaster for VIA 0 ;set address for interrupt enable regaster to $800E
 ;end VIA 1
-;start VIA 2 ; vido red/ main IO
+;VIA 2 address maping
+;start VIA 2 ;Main IO
 PORTB1 = $8010  ;Main IO
 PORTA1 = $8011  ;vido red
 DDRB1 = $8012   ;data deriction regaster for port B on VIA 1 ;set address for port B to $8012
@@ -32,7 +35,8 @@ PCR1 = $801C    ;peripheral control regaster for VIA 1 ;set address for peripher
 IFR1 = $801D    ;interrupt flag regaster for VIA 1 ;set address for interrupt flag regaster to $801D
 IER1 = $801E    ;interrupt enable regaster for VIA 1 ;set address for interrupt enable regaster to $801E
 ;end VIA 2
-;start VIA 3 ; vido green/blue
+;start VIA 3 ;address maping
+;start VIA 3 ;vido green/blue
 PORTB2 = $8020  ;vido blue
 PORTA2 = $8021  ;vido green
 DDRB2 = $8022   ;data deriction regaster for port B on VIA 2 ;set address for port B to $8022
@@ -49,7 +53,8 @@ PCR2 = $802C    ;peripheral control regaster for VIA 2 ;set address for peripher
 IFR2 = $802D    ;interrupt flag regaster for VIA 2 ;set address for interrupt flag regaster to $802D
 IER2 = $802E    ;interrupt enable regaster for VIA 2 ;set address for interrupt enable regaster to $802E
 ;end VIA 3
-;start VIA 4 ; secondaey IO 2/ PS/2 keyboard
+;Vai 4 address maping
+;start VIA 4 ;secondaey IO 2/ PS/2 keyboard
 PORTB3 = $8030  ;PS/2 keyboard
 PORTA3 = $8031  ;secondaey IO 2
 DDRB3 = $8032   ;data deriction regaster for port B on VIA 3 ;set address for port B to $8032
@@ -66,7 +71,8 @@ PCR3 = $803C    ;peripheral control regaster for VIA 3 ;set address for peripher
 IFR3 = $803D    ;interrupt flag regaster for VIA 3 ;set address for interrupt flag regaster to $803D
 IER3 = $803E    ;interrupt enable regaster for VIA 3 ;set address for interrupt enable regaster to $803E
 ;end VIA 4
-;start VIA 5 ; secondaey IO 3/4
+;VIA 5 address maping
+;start VIA 5 ;secondaey IO 3/4
 PORTB4 = $8040  ;secondaey IO 3
 PORTA4 = $8041  ;secondaey IO 4
 DDRB4 = $8042   ;data deriction regaster for port B on VIA 4 ;set address for port B to $8042
@@ -83,6 +89,7 @@ PCR4 = $804C    ;peripheral control regaster for VIA 4 ;set address for peripher
 IFR4 = $804D    ;interrupt flag regaster for VIA 4 ;set address for interrupt flag regaster to $804D
 IER4 = $804E    ;interrupt enable regaster for VIA 4 ;set address for interrupt enable regaster to $804E
 ;end VIA 5
+;VIA 6 address maping
 ;start VIA 6 ; secondaey IO 5/6
 PORTB5 = $8050  ;secondaey IO 5
 PORTA5 = $8051  ;secondaey IO 6
@@ -100,6 +107,7 @@ PCR5 = $805C    ;peripheral control regaster for VIA 5 ;set address for peripher
 IFR5 = $805D    ;interrupt flag regaster for VIA 5 ;set address for interrupt flag regaster to $805D
 IER5 = $805E    ;interrupt enable regaster for VIA 5 ;set address for interrupt enable regaster to $805E
 ;end VIA 6
+;VIA 7 address maping
 ;start VIA 7 ; secondaey IO 8/7
 PORTB6 = $8060  ;secondaey IO 7
 PORTA6 = $8061  ;secondaey IO 8
@@ -117,6 +125,7 @@ PCR6 = $806C    ;peripheral control regaster for VIA 6 ;set address for peripher
 IFR6 = $806D    ;interrupt flag regaster for VIA 6 ;set address for interrupt flag regaster to $806D
 IER6 = $806E    ;interrupt enable regaster for VIA 6 ;set address for interrupt enable regaster to $806E
 ;end VIA 7
+;VIA 8 address maping
 ;start VIA 8 ; secondaey IO 9/10
 PORTB7 = $8070  ;secondaey IO 9
 PORTA7 = $8071  ;secondaey IO 10
