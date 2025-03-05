@@ -1,5 +1,6 @@
-# 65c02 breadboard 
-USB 2 type-A, USB 2 type-B, VGA output
+# 65c02 calculator
+a calculator using the 65c02 with a custom video card
+vidow card mode 800x600 real pixel 200x
 
 adderss map: 
 I/O 8000-804F

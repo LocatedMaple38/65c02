@@ -142,11 +142,11 @@ RS = %00000001 ; regaster slect
   .org $E000
   
 reset:
-  lda #$ff        ;load a reg with ff
-  sta DDRB0       ;set DDRB0 to output
+  sei #1
   lda #%00000111  ;load a reg with 7
   sta DDRA0       ;set DDRA0 bottom 3 bits to output
   lda #$ff        ;load a reg with ff
+  sta DDRB0       ;set DDRB0 to output
   sta DDRB1       ;set DDRB1 to output
   sta DDRA1       ;set DDRA1 to output
   sta DDRB2       ;set DDRB2 to output
@@ -163,7 +163,7 @@ reset:
   sta DDRB7       ;set DDRB7 to input
   sta DDRA7       ;set DDRA7 to input
 
-  jsr lcd_init   ;init lcd
+  jsr lcd_init    ;init lcd
   jmp loop
 
 lcd_init:
