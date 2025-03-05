@@ -147,6 +147,10 @@ IER7 = $807E    ;interrupt enable regaster for VIA 7 ;set address for interrupt 
 E =  %00000100 ; enable for lcd
 RW = %00000010 ; read/write for lcd
 RS = %00000001 ; regaster slect for lcd
+
+VGA_RED = $1000
+VGA_BLUE = $1001
+VGA_GREEN = $1002
 ;end lcd
   .org $E000  ;start of code
   
@@ -160,6 +164,9 @@ reset:
   sta DDRA1       ;set DDRA1 to output
   sta DDRB2       ;set DDRB2 to output
   lda #$00        ;load a reg with 0
+  sta VGA_RED     ;set VGA_RED to 0
+  sta VGA_BLUE    ;set VGA_BLUE to 0
+  sta VGA_GREEN   ;set VGA_GREEN to 0
   sta DDRA2       ;set DDRA2 to input
   sta DDRB3       ;set DDRB3 to input
   sta DDRA3       ;set DDRA3 to input
@@ -346,8 +353,17 @@ IFR1Timer2:
   jmp VIA1
 
 IFR1CB1: ;display controle
-
-  jmp VIA1
+  lda VGA_RED       ;load a reg with VGA_RED
+  inc VGA_RED, 1    ;increment VGA_RED by 1
+  sta VGA_RED       ;set VGA_RED to 1
+  lda VGA_BLUE      ;load a reg with VGA_BLUE
+  inc VGA_BLUE, 1   ;increment VGA_BLUE by 1
+  sta VGA_BLUE      ;set VGA_BLUE to 1
+  lda VGA_GREEN     ;load a reg with VGA_GREEN
+  inc VGA_GREEN, 1  ;increment VGA_GREEN by 1
+  sta VGA_GREEN     ;set VGA_GREEN to 1
+  jsr VGA_print     ;print to VGA
+  jmp VIA1          ;jump to VIA1
 
 IFR1CB2:
   jmp VIA1
@@ -486,6 +502,15 @@ IFR7CA1:
 
 IFR7CA2:
   jmp VIA7
+
+VGA_print:
+  lda VGA_RED
+  sta PORTB1
+  lda VGA_BLUE
+  sta PORTA1
+  lda VGA_GREEN
+  sta PORTB2
+  rts
 
 nmi:
   rti
