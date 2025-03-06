@@ -224,7 +224,7 @@ irq:
   phy         ;push y reg
 irq1:
   lda IFR0    ;load a reg with IFR0
-bbs7 VIA0     ;branch if IRQ (bit 7) is set
+  bbs7 VIA0   ;branch if IRQ (bit 7) is set
   lda IFR1    ;load a reg with IFR1
   bbs7 VIA1   ;branch if IRQ (bit 7) is set
   lda IFR2    ;load a reg with IFR2
