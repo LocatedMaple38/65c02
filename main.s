@@ -156,7 +156,7 @@ VGA_GREEN = $1002
   
 reset:
   sei #1          ;disable irq
-  lda #%00000111  ;load a reg with 7
+  lda #%00000111  ;load a reg with bits 1,2,3 set
   sta DDRA0       ;set DDRA0 bottom 3 bits to output
   lda #$ff        ;load a reg with ff
   sta DDRB0       ;set DDRB0 to output
@@ -206,9 +206,6 @@ lcd_print:
   sta PORTA0     ;enable lcd
   lda #$00       ;clear a reg
   sta PORTA0     ;clear lcd enable
-  rts
-
-ld_read:
   rts
 
 lcd_wate:
