@@ -177,12 +177,12 @@ reset:
   sta VGA_RED         ;set VGA_RED to 0
   sta VGA_BLUE        ;set VGA_BLUE to 0
   sta VGA_GREEN       ;set VGA_GREEN to 0
-  sta VGA_RED_RAM     ;
-  sta VGA_RED_RAM+1   ;
-  sta VGA_GREEN_RAM   ;
-  sta VGA_GREEN_RAM+1 ;
-  sta VGA_BLUE_RAM    ;
-  sta VGA_BLUE_RAM+1  ;
+  sta VGA_RED_RAM     ;set VGA_RED_RAM to 0
+  sta VGA_RED_RAM+1   ;set VGA_RED_RAM+1 to 0
+  sta VGA_GREEN_RAM   ;set VGA_GREEN_RAM to 0
+  sta VGA_GREEN_RAM+1 ;aet VGA_GREEN_RAM+1 to 0
+  sta VGA_BLUE_RAM    ;set VGA_BLUE_RAM to 0
+  sta VGA_BLUE_RAM+1  ;set VGA_BLUE_RAM+1 to 0
   sta DDRB3           ;set DDRB3 to input
   sta DDRA3           ;set DDRA3 to input
   sta DDRB4           ;set DDRB4 to input
