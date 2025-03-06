@@ -160,9 +160,6 @@ VGA_BLUE = $1007
 VGA_GREEN = $1008
 ;end vga color
 ;end vga
-;math
-muty = $1009
-;end math
   .org $E000  ;start of code
   
 reset:
