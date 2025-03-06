@@ -187,19 +187,20 @@ reset:
 lcd_init:
   lda #%00000001  ;clear lcd display
   jsr lcd_print   ;print to lcd
-  lda #%00000010  ;reset cursetr top left
+  lda #%00000010  ;reset curser top left
   jsr lcd_print   ;print to lcd
   lda #%00000110  ;entry mode set
   jsr lcd_print   ;print to lcd
   lda #%00001111  ;display on
   jsr lcd_print   ;print to lcd
-  lda #%00010100  ;cursor or display shift
+  lda #%00010100  ;cursor or display shift off
   jsr lcd_print   ;print to lcd
   lda #%00111000  ;function set
   jsr lcd_print   ;print to lcd
   rts
 
 lcd_print:
+  jsr lcd_wate   ;wait for lcd to be ready
   sta PORTB0     ;proint a reg to lcd
   lda #E         ;enable
   sta PORTA0     ;enable lcd
@@ -209,10 +210,23 @@ lcd_print:
 
 ld_read:
   rts
-  
-display_write:
 
+lcd_wate:
+  pha            ;push a reg
+lcd_wait1:
+  lda #RW        ;read/write
+  sta PORTB0     ;set read/write to high on lcd 
+  lda (#RW||#E)  ;read/write and enable
+  sta PORTB0     ;set read/write and enable to high on lcd
+  lda PORTA0     ;read from lcd
+  lda #RW        ;read/write
+  sta PORTB0     ;set read/write to high on lcd and clear enable
+  bbs7 lcd_wate1 ;wait for lcd to be ready
+  lda #$00       ;clear a reg
+  sta PORTA0     ;clear lcd enable
+  pla            ;pull a reg
   rts
+
 loop:
   jmp loop
 
