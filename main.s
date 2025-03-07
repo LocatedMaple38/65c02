@@ -530,12 +530,12 @@ IFR7CA2:
   jmp VIA7
 
 VGA_print:
-  lda VGA_RED
-  sta PORTB1
-  lda VGA_BLUE
-  sta PORTA1
-  lda VGA_GREEN
-  sta PORTB2
+  lda VGA_RED         ;load a reg with VGA_RED
+  sta PORTB1          ;set PORTB1 to VGA_RED
+  lda VGA_BLUE        ;load a reg with VGA_BLUE
+  sta PORTA1          ;set PORTA1 to VGA_BLUE
+  lda VGA_GREEN       ;load a reg with VGA_GREEN
+  sta PORTB2          ;set PORTB2 to VGA_GREEN
   
   rts
 
@@ -543,26 +543,26 @@ VGA_read:
   pha
   ;lda ;location of reg with vga ram controle
   ;sta ;put on a VIA the vga ram controle
-  lda VGA_RED_ADDRES
-  sta PORTA3
-  lda VGA_RED_ADDRES+1
-  sta PORTB3
-  lda VGA_GREEN_ADDRES
-  sta PORTA4
-  lda VGA_GREEN_ADDRES+1
-  sta PORTB4
-  lda VGA_BLUE_ADDRES
-  sta PORTA5
-  lda VGA_BLUE_ADDRES+1
-  sta PORTB5
+  lda VGA_RED_ADDRES            ;load a reg with VGA_RED_ADDRES
+  sta PORTA3                    ;set PORTA3 to VGA_RED_ADDRES
+  lda VGA_RED_ADDRES+1          ;load a reg with VGA_RED_ADDRES+1
+  sta PORTB3                    ;set PORTB3 to VGA_RED_ADDRES+1
+  lda VGA_GREEN_ADDRES          ;load a reg with VGA_GREEN_ADDRES
+  sta PORTA4                    ;set PORTA4 to VGA_GREEN_ADDRES
+  lda VGA_GREEN_ADDRES+1        ;load a reg with VGA_GREEN_ADDRES+1
+  sta PORTB4                    ;set PORTB4 to VGA_GREEN_ADDRES+1
+  lda VGA_BLUE_ADDRES           ;load a reg with VGA_BLUE_ADDRES
+  sta PORTA5                    ;set PORTA5 to VGA_BLUE_ADDRES
+  lda VGA_BLUE_ADDRES+1         ;load a reg with VGA_BLUE_ADDRES+1
+  sta PORTB5                    ;set PORTB5 to VGA_BLUE_ADDRES+1
   
-  lda PORTA1
-  sta VGA_RED
-  lda PORTB2
-  sta VGA_BLUE
-  lda PORTA2
-  sta VGA_GREEN
-  pla 
+  lda PORTA1                    ;load a reg with PORTA1
+  sta VGA_RED                   ;set VGA_RED to PORTA1
+  lda PORTB2                    ;load a reg with PORTB2
+  sta VGA_BLUE                  ;set VGA_BLUE to PORTB2
+  lda PORTA2                    ;load a reg with PORTA2
+  sta VGA_GREEN                 ;set VGA_GREEN to PORTA2
+  pla                           ;pull a reg from stack
   rts
 
 mutlyply:
