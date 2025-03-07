@@ -292,63 +292,63 @@ VIA1:
   jmp irq1        ;jump to irq1
 
 VIA2:
-  bbs6 IFR2Timer1 ;branch if IRQ (bit 6) VIA2 is set
-  bbs5 IFR2Timer2 ;branch if IRQ (bit 5) VIA2 is set
-  bbs4 IFR2CB1    ;branch if IRQ (bit 4) VIA2 is set
-  bbs3 IFR2CB2    ;branch if IRQ (bit 3) VIA2 is set
-  bbs2 IFR2SR     ;branch if IRQ (bit 2) VIA2 is set
-  bbs1 IFR2CA1    ;branch if IRQ (bit 1) VIA2 is set
-  bbs0 IFR2CA2    ;branch if IRQ (bit 0) VIA2 is set
+  bbs6 IFR2Timer1 ;branch if Timer1 IFR VIA2 bit 6 set
+  bbs5 IFR2Timer2 ;branch if Timer2 IFR VIA2 bit 5 set
+  bbs4 IFR2CB1    ;branch if CB1 IFR VIA2 bit 4 set
+  bbs3 IFR2CB2    ;branch if CB2 IFR VIA2 bit 3 set
+  bbs2 IFR2SR     ;branch if Shift Regaster IFR VIA2 bit 2 set
+  bbs1 IFR2CA1    ;branch if CA1 IFR VIA2 bit 1 set
+  bbs0 IFR2CA2    ;branch if CA2 IFR VIA2 bit 0 set
   jmp irq1        ;jump to irq1
 
 VIA3:
-  bbs6 IFR3Timer1 ;branch if IRQ (bit 6) VIA3 is set
-  bbs5 IFR3Timer2 ;branch if IRQ (bit 5) VIA3 is set
-  bbs4 IFR3CB1    ;branch if IRQ (bit 4) VIA3 is set
-  bbs3 IFR3CB2    ;branch if IRQ (bit 3) VIA3 is set
-  bbs2 IFR3SR     ;branch if IRQ (bit 2) VIA3 is set
-  bbs1 IFR3CA1    ;branch if IRQ (bit 1) VIA3 is set
-  bbs0 IFR3CA2    ;branch if IRQ (bit 0) VIA3 is set
+  bbs6 IFR3Timer1 ;branch if Timer1 IFR VIA3 bit 6 set
+  bbs5 IFR3Timer2 ;branch if Timer2 IFR VIA3 bit 5 set
+  bbs4 IFR3CB1    ;branch if CB1 IFR VIA3 bit 4 set
+  bbs3 IFR3CB2    ;branch if CB2 IFR VIA3 bit 3 set
+  bbs2 IFR3SR     ;branch if Shift Regaster IFR VIA3 bit 2 set
+  bbs1 IFR3CA1    ;branch if CA1 IFR VIA3 bit 1 set
+  bbs0 IFR3CA2    ;branch if CA2 IFR VIA3 bit 0 set
   jmp irq1        ;jump to irq1
 
 VIA4:
-  bbs6 IFR4Timer1 ;branch if IRQ (bit 6) VIA4 is set
-  bbs5 IFR4Timer2 ;branch if IRQ (bit 5) VIA4 is set
-  bbs4 IFR4CB1    ;branch if IRQ (bit 4) VIA4 is set
-  bbs3 IFR4CB2    ;branch if IRQ (bit 3) VIA4 is set
-  bbs2 IFR4SR     ;branch if IRQ (bit 2) VIA4 is set
-  bbs1 IFR4CA1    ;branch if IRQ (bit 1) VIA4 is set
-  bbs0 IFR4CA2    ;branch if IRQ (bit 0) VIA4 is set
+  bbs6 IFR4Timer1 ;branch if Timer1 IFR VIA4 bit 6 set
+  bbs5 IFR4Timer2 ;branch if Timer2 IFR VIA4 bit 5 set
+  bbs4 IFR4CB1    ;branch if CB1 IFR VIA4 bit 4 set
+  bbs3 IFR4CB2    ;branch if CB2 IFR VIA4 bit 3 set
+  bbs2 IFR4SR     ;branch if Shift Regaster IFR VIA4 bit 2 set
+  bbs1 IFR4CA1    ;branch if CA1 IFR VIA4 bit 1 set
+  bbs0 IFR4CA2    ;branch if CA2 IFR VIA4 bit 0 set
   jmp irq1        ;jump to irq1
 
 VIA5:
-  bbs6 IFR5Timer1 ;branch if IRQ (bit 6) VIA5 is set
-  bbs5 IFR5Timer2 ;branch if IRQ (bit 5) VIA5 is set
-  bbs4 IFR5CB1    ;branch if IRQ (bit 4) VIA5 is set
-  bbs3 IFR5CB2    ;branch if IRQ (bit 3) VIA5 is set
-  bbs2 IFR5SR     ;branch if IRQ (bit 2) VIA5 is set
-  bbs1 IFR5CA1    ;branch if IRQ (bit 1) VIA5 is set
-  bbs0 IFR5CA2    ;branch if IRQ (bit 0) VIA5 is set
+  bbs6 IFR5Timer1 ;branch if Timer1 IFR VIA5 bit 6 set
+  bbs5 IFR5Timer2 ;branch if Timer2 IFR VIA5 bit 5 set
+  bbs4 IFR5CB1    ;branch if CB1 IFR VIA5 bit 4 set
+  bbs3 IFR5CB2    ;branch if CB2 IFR VIA5 bit 3 set
+  bbs2 IFR5SR     ;branch if Shift Regaster IFR VIA5 bit 2 set
+  bbs1 IFR5CA1    ;branch if CA1 IFR VIA5 bit 1 set
+  bbs0 IFR5CA2    ;branch if CA2 IFR VIA5 bit 0 set
   jmp irq1        ;jump to irq1
 
 VIA6:
-  bbs6 IFR6Timer1 ;branch if IRQ (bit 6) VIA6 is set
-  bbs5 IFR6Timer2 ;branch if IRQ (bit 5) VIA6 is set
-  bbs4 IFR6CB1    ;branch if IRQ (bit 4) VIA6 is set
-  bbs3 IFR6CB2    ;branch if IRQ (bit 3) VIA6 is set
-  bbs2 IFR6SR     ;branch if IRQ (bit 2) VIA6 is set
-  bbs1 IFR6CA1    ;branch if IRQ (bit 1) VIA6 is set
-  bbs0 IFR6CA2    ;branch if IRQ (bit 0) VIA6 is set
+  bbs6 IFR6Timer1 ;branch if Timer1 IFR VIA6 bit 6 set
+  bbs5 IFR6Timer2 ;branch if Timer2 IFR VIA6 bit 5 set
+  bbs4 IFR6CB1    ;branch if CB1 IFR VIA6 bit 4 set
+  bbs3 IFR6CB2    ;branch if CB2 IFR VIA6 bit 3 set
+  bbs2 IFR6SR     ;branch if Shift Regaster IFR VIA6 bit 2 set
+  bbs1 IFR6CA1    ;branch if CA1 IFR VIA6 bit 1 set
+  bbs0 IFR6CA2    ;branch if CA2 IFR VIA6 bit 0 set
   jmp irq1        ;jump to irq1
 
 VIA7:
-  bbs6 IFR7Timer1 ;branch if IRQ (bit 6) VIA7 is set
-  bbs5 IFR7Timer2 ;branch if IRQ (bit 5) VIA7 is set
-  bbs4 IFR7CB1    ;branch if IRQ (bit 4) VIA7 is set
-  bbs3 IFR7CB2    ;branch if IRQ (bit 3) VIA7 is set
-  bbs2 IFR7SR     ;branch if IRQ (bit 2) VIA7 is set
-  bbs1 IFR7CA1    ;branch if IRQ (bit 1) VIA7 is set
-  bbs0 IFR7CA2    ;branch if IRQ (bit 0) VIA7 is set
+  bbs6 IFR7Timer1 ;branch if Timer1 IFR VIA7 bit 6 set
+  bbs5 IFR7Timer2 ;branch if Timer2 IFR VIA7 bit 5 set
+  bbs4 IFR7CB1    ;branch if CB1 IFR VIA7 bit 4 set
+  bbs3 IFR7CB2    ;branch if CB2 IFR VIA7 bit 3 set
+  bbs2 IFR7SR     ;branch if Shift Regaster IFR VIA7 bit 2 set
+  bbs1 IFR7CA1    ;branch if CA1 IFR VIA7 bit 1 set
+  bbs0 IFR7CA2    ;branch if CA2 IFR VIA7 bit 0 set
   jmp irq1        ;jump to irq1
  
 IFR0Timer1:
@@ -569,6 +569,16 @@ mutlyply:
   adc y
   dex
   bne mutlyply
+  rts
+
+divide:
+
+  rts
+
+square:
+  rts
+
+square_root:
   rts
 
 nmi:
