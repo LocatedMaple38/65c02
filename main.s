@@ -54,9 +54,9 @@ IFR2 = $802D    ;interrupt flag regaster for VIA 2 ;set address for interrupt fl
 IER2 = $802E    ;interrupt enable regaster for VIA 2 ;set address for interrupt enable regaster to $802E
 ;end VIA 3
 ;Vai 4 address maping
-;start VIA 4 ;vga red addres low/hgh
-PORTB3 = $8030  ;vga red addres low
-PORTA3 = $8031  ;vga red addres high
+;start VIA 4 ;vga addres/ps/2 keyboard
+PORTB3 = $8030  ;vga addres
+PORTA3 = $8031  ;ps/2 keyboard
 DDRB3 = $8032   ;data deriction regaster for port B on VIA 3 ;set address for port B to $8032
 DDRA3 = $8033   ;data deriction regaster for port A on VIA 3 ;set address for port A to $8033
 T1CL3 = $8034   ;timer 1 low byte regaster for VIA 3 ;set address for timer 1 low byte to $8034
@@ -72,9 +72,9 @@ IFR3 = $803D    ;interrupt flag regaster for VIA 3 ;set address for interrupt fl
 IER3 = $803E    ;interrupt enable regaster for VIA 3 ;set address for interrupt enable regaster to $803E
 ;end VIA 4
 ;VIA 5 address maping
-;start VIA 5 ;vga green addres low/high
-PORTB4 = $8040  ;vga green addres low
-PORTA4 = $8041  ;vga green addres high
+;start VIA 5 ;secondary IO 1/2
+PORTB4 = $8040  ;secondary IO 1
+PORTA4 = $8041  ;secondary IO 2
 DDRB4 = $8042   ;data deriction regaster for port B on VIA 4 ;set address for port B to $8042
 DDRA4 = $8043   ;data deriction regaster for port A on VIA 4 ;set address for port A to $8043
 T1CL4 = $8044   ;timer 1 low byte regaster for VIA 4 ;set address for timer 1 low byte to $8044
@@ -90,9 +90,9 @@ IFR4 = $804D    ;interrupt flag regaster for VIA 4 ;set address for interrupt fl
 IER4 = $804E    ;interrupt enable regaster for VIA 4 ;set address for interrupt enable regaster to $804E
 ;end VIA 5
 ;VIA 6 address maping
-;start VIA 6 ;vga blue addres low/high
-PORTB5 = $8050  ;vga blue addres low
-PORTA5 = $8051  ;vga blue addres high
+;start VIA 6 ;  secondarey IO 3/4
+PORTB5 = $8050  ;secondarey IO 3
+PORTA5 = $8051  ;secondarey IO 4
 DDRB5 = $8052   ;data deriction regaster for port B on VIA 5 ;set address for port B to $8052
 DDRA5 = $8053   ;data deriction regaster for port A on VIA 5 ;set address for port A to $8053
 T1CL5 = $8054   ;timer 1 low byte regaster for VIA 5 ;set address for timer 1 low byte to $8054
@@ -108,9 +108,9 @@ IFR5 = $805D    ;interrupt flag regaster for VIA 5 ;set address for interrupt fl
 IER5 = $805E    ;interrupt enable regaster for VIA 5 ;set address for interrupt enable regaster to $805E
 ;end VIA 6
 ;VIA 7 address maping
-;start VIA 7 ;ps/2 keyboard/secondaey io 1
-PORTB6 = $8060  ;ps/2 keyboard
-PORTA6 = $8061  ;secondaey IO 1
+;start VIA 7 ;secondarey IO 5/6
+PORTB6 = $8060  ;secondarey IO 5
+PORTA6 = $8061  ;secondarey IO 6
 DDRB6 = $8062   ;data deriction regaster for port B on VIA 6 ;set address for port B to $8062
 DDRA6 = $8063   ;data deriction regaster for port A on VIA 6 ;set address for port A to $8063
 T1CL6 = $8064   ;timer 1 low byte regaster for VIA 6 ;set address for timer 1 low byte to $8064
@@ -126,9 +126,9 @@ IFR6 = $806D    ;interrupt flag regaster for VIA 6 ;set address for interrupt fl
 IER6 = $806E    ;interrupt enable regaster for VIA 6 ;set address for interrupt enable regaster to $806E
 ;end VIA 7
 ;VIA 8 address maping
-;start VIA 8 ; secondaey IO 2/3
-PORTB7 = $8070  ;secondaey IO 2
-PORTA7 = $8071  ;secondaey IO 3
+;start VIA 8 ; secondaey IO 5/6
+PORTB7 = $8070  ;secondaey IO 5
+PORTA7 = $8071  ;secondaey IO 6
 DDRB7 = $8072   ;data deriction regaster for port B on VIA 7 ;set address for port B to $8072
 DDRA7 = $8073   ;data deriction regaster for port A on VIA 7 ;set address for port A to $8073
 T1CL7 = $8074   ;timer 1 low byte regaster for VIA 7 ;set address for timer 1 low byte to $8074
@@ -149,15 +149,10 @@ RW = %00000010 ; read/write for lcd
 RS = %00000001 ; regaster slect for lcd
 ;end lcd
 ;vga
-;VGA RAM
-VGA_RED_RAM = $0000
-VGA_BLUE_RAM = $0002
-VGA_GREEN_RAM = $0004
-;end VGA RAM
 ;vga color
-VGA_RED = $1006
-VGA_BLUE = $1007
-VGA_GREEN = $1008
+VGA_RED = $1003
+VGA_BLUE = $1004
+VGA_GREEN = $1005
 ;end vga color
 ;end vga
   .org $E000  ;start of code
@@ -177,12 +172,7 @@ reset:
   sta VGA_RED         ;set VGA_RED to 0
   sta VGA_BLUE        ;set VGA_BLUE to 0
   sta VGA_GREEN       ;set VGA_GREEN to 0
-  sta VGA_RED_RAM     ;set VGA_RED_RAM to 0
-  sta VGA_RED_RAM+1   ;set VGA_RED_RAM+1 to 0
-  sta VGA_GREEN_RAM   ;set VGA_GREEN_RAM to 0
-  sta VGA_GREEN_RAM+1 ;aet VGA_GREEN_RAM+1 to 0
-  sta VGA_BLUE_RAM    ;set VGA_BLUE_RAM to 0
-  sta VGA_BLUE_RAM+1  ;set VGA_BLUE_RAM+1 to 0
+  sta VGA_ADDRES      ;set VGA_ADDRES to 0
   sta DDRB3           ;set DDRB3 to input
   sta DDRA3           ;set DDRA3 to input
   sta DDRB4           ;set DDRB4 to input
@@ -195,8 +185,8 @@ reset:
   sta DDRA7           ;set DDRA7 to input
   lda #%00010000      ;load a reg with bit 4 set
   sta PCR1            ;set PCR1 CB1 control high to slect nagative active edge interrupt
-  jsr lcd_init        ;init lcd
-  sei #0              ;enable IRQ
+  jsr lcd_init        ;inisolize lcd
+  sei #0              ;enable irq
   jmp loop
 
 lcd_init:
@@ -350,7 +340,7 @@ VIA7:
   bbs1 IFR7CA1    ;branch if CA1 IFR VIA7 bit 1 set
   bbs0 IFR7CA2    ;branch if CA2 IFR VIA7 bit 0 set
   jmp irq1        ;jump to irq1
- 
+
 IFR0Timer1:
   jmp VIA0
 
@@ -378,19 +368,13 @@ IFR1Timer1:
 IFR1Timer2:
   jmp VIA1
 
-IFR1CB1: ;display controle
-  lda VGA_RED       ;load a reg with VGA_RED
-  inc VGA_RED, 1    ;increment VGA_RED by 1
-  sta VGA_RED       ;set VGA_RED to x=x+1
-  lda VGA_BLUE      ;load a reg with VGA_BLUE
-  inc VGA_BLUE, 1   ;increment VGA_BLUE by 1
-  sta VGA_BLUE      ;set VGA_BLUE to x=x+1
-  lda VGA_GREEN     ;load a reg with VGA_GREEN
-  inc VGA_GREEN, 1  ;increment VGA_GREEN by 1
-  sta VGA_GREEN     ;set VGA_GREEN to x=x+1
-  jsr VGA_print     ;print to VGA
-  jmp VIA1          ;jump to VIA1
-
+IFR1CB1:          ;display controle
+  inc VGA_RED     ;increment VGA_RED by 1
+  inc VGA_BLUE    ;increment VGA_BLUE by 1
+  inc VGA_GREEN   ;increment VGA_GREEN by 1
+  inc VGA_ADDRES  ;increment VGA_ADDRES by 1
+  jsr VGA_print
+  jmp VIA1
 IFR1CB2:
   jmp VIA1
 
@@ -530,39 +514,18 @@ IFR7CA2:
   jmp VIA7
 
 VGA_print:
+  lda VGA_ADDRES      ;load a reg with VGA_ADDRS
+  sta PORTB3          ;set PORTB3 to VGA_ADDRES
+
   lda VGA_RED         ;load a reg with VGA_RED
   sta PORTB1          ;set PORTB1 to VGA_RED
+
   lda VGA_BLUE        ;load a reg with VGA_BLUE
   sta PORTA1          ;set PORTA1 to VGA_BLUE
+  
   lda VGA_GREEN       ;load a reg with VGA_GREEN
   sta PORTB2          ;set PORTB2 to VGA_GREEN
   
-  rts
-
-VGA_read:
-  pha
-  ;lda ;location of reg with vga ram controle
-  ;sta ;put on a VIA the vga ram controle
-  lda VGA_RED_ADDRES            ;load a reg with VGA_RED_ADDRES
-  sta PORTA3                    ;set PORTA3 to VGA_RED_ADDRES
-  lda VGA_RED_ADDRES+1          ;load a reg with VGA_RED_ADDRES+1
-  sta PORTB3                    ;set PORTB3 to VGA_RED_ADDRES+1
-  lda VGA_GREEN_ADDRES          ;load a reg with VGA_GREEN_ADDRES
-  sta PORTA4                    ;set PORTA4 to VGA_GREEN_ADDRES
-  lda VGA_GREEN_ADDRES+1        ;load a reg with VGA_GREEN_ADDRES+1
-  sta PORTB4                    ;set PORTB4 to VGA_GREEN_ADDRES+1
-  lda VGA_BLUE_ADDRES           ;load a reg with VGA_BLUE_ADDRES
-  sta PORTA5                    ;set PORTA5 to VGA_BLUE_ADDRES
-  lda VGA_BLUE_ADDRES+1         ;load a reg with VGA_BLUE_ADDRES+1
-  sta PORTB5                    ;set PORTB5 to VGA_BLUE_ADDRES+1
-  
-  lda PORTA1                    ;load a reg with PORTA1
-  sta VGA_RED                   ;set VGA_RED to PORTA1
-  lda PORTB2                    ;load a reg with PORTB2
-  sta VGA_BLUE                  ;set VGA_BLUE to PORTB2
-  lda PORTA2                    ;load a reg with PORTA2
-  sta VGA_GREEN                 ;set VGA_GREEN to PORTA2
-  pla                           ;pull a reg from stack
   rts
 
 mutlyply:
@@ -576,9 +539,39 @@ divide:
   rts
 
 square:
+
   rts
 
 square_root:
+
+  rts
+
+sec:
+
+  rts
+
+add:
+
+  rts
+
+cos:
+  
+  rts
+
+tan:
+
+  rts
+
+sin:
+
+  rts
+
+lcm:
+
+  rts
+
+gcd:
+
   rts
 
 nmi:
