@@ -162,19 +162,19 @@ reset:
   lda #%00000111      ;load a reg with bits 1,2,3 set
   sta DDRA0           ;set DDRA0 bottom 3 bits to output
   lda #$ff            ;load a reg with ff
-  sta DDRB0           ;set DDRB0 to output ;lcd data
+  sta DDRB0           ;set DDRB0 to output ;lcd data ;ps/2 keyboard controle ;bit 4, 5, 6
   sta DDRA0           ;set DDRA0 to output ;lcd controle
-  sta DDRA1           ;set DDRA1 to output ;main IO
-  sta DDRB1           ;set DDRB1 to output ;VGA RED DATA
-  sta DDRA2           ;set DDRA2 to output ;VGA GREEN DATA
-  sta DDRB2           ;set DDRB2 to output ;VGA BLUE DATA
+  sta DDRB1           ;set DDRA1 to output ;main IO
+  sta DDRA1           ;set DDRB1 to output ;VGA RED DATA
+  sta DDRB2           ;set DDRA2 to output ;VGA BLUE DATA
+  sta DDRA2           ;set DDRB2 to output ;VGA GREEN DATA
+  sta DDRB3           ;set DDRB3 to output ;VGA Addres
+  sta DDRA3           ;set DDRA3 to output ;PS/2 Keyboard
   lda #$00            ;load a reg with 0
   sta VGA_RED         ;set VGA_RED to 0
   sta VGA_BLUE        ;set VGA_BLUE to 0
   sta VGA_GREEN       ;set VGA_GREEN to 0
   sta VGA_ADDRES      ;set VGA_ADDRES to 0
-  sta DDRB3           ;set DDRB3 to input
-  sta DDRA3           ;set DDRA3 to input
   sta DDRB4           ;set DDRB4 to input
   sta DDRA4           ;set DDRA4 to input
   sta DDRB5           ;set DDRB5 to input
@@ -185,6 +185,8 @@ reset:
   sta DDRA7           ;set DDRA7 to input
   lda #%00010000      ;load a reg with bit 4 set
   sta PCR1            ;set PCR1 CB1 control high to slect nagative active edge interrupt
+  lda #%00000000      ;
+  sta PCR4            ;
   jsr lcd_init        ;inisolize lcd
   sei #0              ;enable irq
   jmp loop
